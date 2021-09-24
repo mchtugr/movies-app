@@ -65,4 +65,29 @@ document.addEventListener(
   fetchMovies(DISCOVER_URL).then((data) => createPagination(data, DISCOVER_URL))
 )
 
+// seaarchbar function
+var timer
+const handleSearch = () => {
+  let keyword = document.querySelector('.search_box').value
+  //search starts when user stops typing
+  clearTimeout(timer)
+
+  // search keyword should be at least 3 characters to start searching.
+  if (keyword.length > 2) {
+    timer = setTimeout(function () {
+      fetchMovies(SEARCH_URL, 1, keyword).then((data) =>
+        createPagination(data, SEARCH_URL)
+      )
+    }, 400)
+  }
+  // if searchbox empty again, get random movies again
+  if (keyword.length === 0) {
+    timer = setTimeout(function () {
+      fetchMovies(DISCOVER_URL).then((data) =>
+        createPagination(data, DISCOVER_URL)
+      )
+    }, 400)
+  }
+}
+
 // add  '&language=tr-TR' query later
