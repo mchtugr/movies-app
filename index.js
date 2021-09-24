@@ -91,3 +91,11 @@ const handleSearch = () => {
 }
 
 // add  '&language=tr-TR' query later
+
+// sorting functionality added
+handleSort = () => {
+  let sortType = document.getElementById('sort').value
+  fetchMovies(DISCOVER_URL, 1, null, sortType).then((data) =>
+    createPagination(data, DISCOVER_URL)
+  )
+}
