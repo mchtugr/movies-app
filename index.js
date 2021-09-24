@@ -23,17 +23,51 @@ const fetchMovies = async (
       sort_by
   )
   const data = await response.json()
-  console.log(data)
   return data
+}
+
+const renderMovieCards = (data) => {
+  const root = document.querySelector('.container')
+  const resArr = data.results
+  let movieCardHtml = ''
+
+  resArr.forEach(
+    ({ original_title, poster_path, release_date, vote_average }) => {
+      const card = `
+        <div class="movie_card" title='${original_title}'>
+          <div class="img_container">
+            <img
+            src="https://image.tmdb.org/t/p/w500${poster_path}"
+            onerror="this.onerror=null; this.src='img/default-img.jpg'"
+            alt="${original_title}"
+            />
+          </div>
+          <div class="card_text_container">
+            <h4 class="movie_title">${original_title.slice(0, 40)}</h4>
+            <div>${release_date.slice(0, 4)}</div> 
+            <div class="movie_score_container">
+              <h5 class="movie_score ${vote_average < 5 && 'text_red'} ${
+        vote_average >= 5 && vote_average < 7 && 'text_blue'
+      } ${vote_average >= 7 && 'text_green'}" >${vote_average}</h5>
+            </div>            
+          </div>
+        </div>`
+      movieCardHtml += card
+    }
+  )
+
+  root.innerHTML = movieCardHtml
 }
 
 const paginate = (pageNum, url) => {
   // when pagination change, fetch new datas
-  fetchMovies(url, pageNum).then((data) => createPagination(data, url))
+  fetchMovies(url, pageNum)
+    .then((data) => createPagination(data, url))
+    .then(renderMovieCards)
 }
 
 // creates pagination buttons
-const createPagination = (data, url) => {
+const createPagination = async (data, url) => {
   const pagination = document.querySelector('#pagination')
   const currentPage = data.page
   const lastPage = data.total_pages
@@ -43,26 +77,43 @@ const createPagination = (data, url) => {
   // shows only first three pages if available
   let firstThree = pages.slice(currentPageIndex, currentPageIndex + 3)
 
-  // first page btn
+  // first page & next page btns
   paginationHtml = `<button class="pagination_item" ${
     currentPage === 1 && 'disabled'
-  } onclick='paginate(1, ${url})'>&laquo;</button>`
+  } onclick='paginate(1, "${url}")'><i class="fas fa-fast-backward pagination_icon"></i></button>
+  <button class="pagination_item" ${
+    currentPage === 1 && 'disabled'
+  } onclick='paginate(${
+    currentPage - 1
+  }, "${url}")'><i class="fas fa-step-backward pagination_icon"></i></button>`
+
   // render first three pages after current page
   firstThree.forEach((pageNum) => {
-    paginationHtml += `<button class="pagination_item" onclick='paginate(${pageNum}, "${url}")'>${pageNum}</button>`
+    paginationHtml += `<button class="pagination_item ${
+      currentPage === pageNum && 'active'
+    }" onclick='paginate(${pageNum}, "${url}")'>${pageNum}</button>`
   })
-  // last page btn
-  paginationHtml += `<button class="pagination_item" ${
+  // next page & last page btns
+  paginationHtml += `
+  <button class="pagination_item" ${
     currentPage === lastPage && 'disabled'
-  } onclick='paginate(${lastPage}, ${url})'>&raquo;</button>`
+  } onclick='paginate(${
+    currentPage + 1
+  }, "${url}")'><i class="fas fa-step-forward pagination_icon"></i></button>
+  <button class="pagination_item" ${
+    currentPage === lastPage && 'disabled'
+  } onclick='paginate(${lastPage}, "${url}")'><i class="fas fa-fast-forward pagination_icon"></i></button>`
 
   pagination.innerHTML = paginationHtml
+  return data
 }
 
 // when page is first loaded, fetch the movies
 document.addEventListener(
   'DOMContentLoaded',
-  fetchMovies(DISCOVER_URL).then((data) => createPagination(data, DISCOVER_URL))
+  fetchMovies(DISCOVER_URL)
+    .then((data) => createPagination(data, DISCOVER_URL))
+    .then(renderMovieCards)
 )
 
 // seaarchbar function
@@ -76,7 +127,7 @@ const handleSearch = () => {
   if (keyword.length > 2) {
     timer = setTimeout(function () {
       fetchMovies(SEARCH_URL, 1, keyword).then((data) =>
-        createPagination(data, SEARCH_URL)
+        createPagination(data, SEARCH_URL).then(renderMovieCards)
       )
     }, 400)
   }
@@ -84,7 +135,7 @@ const handleSearch = () => {
   if (keyword.length === 0) {
     timer = setTimeout(function () {
       fetchMovies(DISCOVER_URL).then((data) =>
-        createPagination(data, DISCOVER_URL)
+        createPagination(data, DISCOVER_URL).then(renderMovieCards)
       )
     }, 400)
   }
@@ -96,6 +147,6 @@ const handleSearch = () => {
 handleSort = () => {
   let sortType = document.getElementById('sort').value
   fetchMovies(DISCOVER_URL, 1, null, sortType).then((data) =>
-    createPagination(data, DISCOVER_URL)
+    createPagination(data, DISCOVER_URL).then(renderMovieCards)
   )
 }
