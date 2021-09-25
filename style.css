@@ -158,6 +158,7 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  min-height: 40vh;
   padding: 40px;
 }
 
