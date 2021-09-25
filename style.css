@@ -1,56 +1,55 @@
 html,
 body {
+  background-color: #eee;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  background-color: #eee;
 }
 
 /* NAVBAR */
 
 nav {
-  padding: 5px 30px;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   background: linear-gradient(
     180deg,
     rgba(61, 59, 59, 1) 0%,
     rgba(0, 0, 0, 1) 100%
   );
+  margin: 0;
+  padding: 5px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo_container {
   background-color: #f3ce13;
-  padding: 8px 24px;
   border-radius: 10px;
+  padding: 8px 24px;
 }
 
 .logo {
-  text-decoration: none;
   color: #000;
   font-weight: 900;
   font-size: 24px;
   font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
 }
 
 .search_box_container {
-  padding: 10px;
-  position: relative;
   align-items: center;
   display: flex;
-  align-items: center;
+  padding: 10px;
+  position: relative;
 }
 
 .search_box {
-  height: 20px;
-  border-radius: 20px;
   border: none;
-  padding: 5px;
-  padding-left: 30px;
+  border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 60px;
+  height: 20px;
+  padding: 5px;
+  padding-left: 30px;
   transition: width 1s ease-in-out;
 }
 
@@ -64,37 +63,39 @@ nav {
 }
 
 .search_icon {
-  position: absolute;
+  color: #666;
   display: inline-block;
   padding: 5px;
-  color: #666;
+  position: absolute;
 }
 
+/* PAGINATION */
+
 #pagination_container {
+  align-items: center;
+  background-color: #eee;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   padding-bottom: 40px;
-  background-color: #eee;
 }
 
 #pagination {
-  display: flex;
-  justify-content: center;
   align-items: center;
   background-color: #eee;
+  display: flex;
+  justify-content: center;
 }
 
 .pagination_item {
-  display: inline-block;
-  margin: 10px;
-  padding: 15px;
   background-color: #eee;
-  cursor: pointer;
   border: none;
   border-radius: 5px;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 30px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+  padding: 15px;
 }
 
 .pagination_info {
@@ -106,8 +107,8 @@ nav {
 }
 
 .active {
-  color: teal;
   background-color: #ddd;
+  color: teal;
 }
 
 .pagination_icon {
@@ -118,6 +119,8 @@ nav {
   color: #999;
 }
 
+/* SORTING */
+
 .sorting_container {
   background-color: #eee;
   display: block;
@@ -125,69 +128,70 @@ nav {
   height: 30px;
   padding-left: 40px;
   padding-right: 40px;
+  text-align: end;
 }
 
 #sort {
-  margin: 30px;
-  margin-top: 20px;
   background-color: #eee;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 30px 0 rgba(0, 0, 0, 0.19);
   border: none;
-  position: absolute;
-  padding-left: 30px;
   border-radius: 5px;
-  right: 30px;
-  width: 250px;
-  height: 30px;
-  font-size: 16px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 30px 0 rgba(0, 0, 0, 0.19);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  margin: 30px;
+  margin-top: 20px;
+  padding-left: 10px;
+  width: 220px;
+  height: 30px;
 }
 
 #sort:focus {
   outline: none;
 }
 
+/* MOVIE LIST */
+
 .container {
-  padding: 40px;
+  background-color: #eee;
   display: flex;
   flex-wrap: wrap;
-  background-color: #eee;
   justify-content: center;
+  padding: 40px;
 }
 
 .movie_card {
-  width: calc((100vw - 240px) / 4);
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin: 20px;
   background-color: transparent;
   border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  text-align: center;
+  width: calc((100vw - 240px) / 4);
 }
 
 .img_container {
-  height: 300px;
   display: block;
   flex: 4;
+  height: 300px;
 }
 
 .movie_card img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .card_text_container {
   background-color: #fff;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  padding: 10px;
   flex: 1;
+  padding: 10px;
   position: relative;
 }
 
@@ -196,25 +200,25 @@ nav {
 }
 
 .movie_score_container {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  top: -20px;
-  right: 20px;
   background-color: #eee;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: -20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
 }
 
 .movie_score {
+  color: cornflowerblue;
   font-size: 16px;
-  padding: 5px;
   line-height: 1;
   margin: 5px;
-  color: cornflowerblue;
+  padding: 5px;
 }
 
 .text_green {
@@ -229,18 +233,20 @@ nav {
   color: crimson;
 }
 
+/* FOOTER */
+
 footer {
-  font-size: 12px;
-  padding: 20px;
-  line-height: 1.5;
-  text-align: center;
   background: linear-gradient(
     180deg,
     rgba(61, 59, 59, 1) 0%,
     rgba(0, 0, 0, 1) 100%
   );
-  letter-spacing: 1.5;
   color: #eee;
+  font-size: 12px;
+  padding: 20px;
+  letter-spacing: 1.5;
+  line-height: 1.5;
+  text-align: center;
 }
 
 footer a {
@@ -258,8 +264,6 @@ footer a {
 
   .sorting_container {
     text-align: center;
-    justify-content: center;
-    display: flex;
   }
 }
 
