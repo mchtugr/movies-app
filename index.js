@@ -78,7 +78,7 @@ const renderPagination = async (data, url) => {
   let firstThree = pages.slice(currentPageIndex, currentPageIndex + 3)
 
   // first page & next page btns
-  let paginationHtml = `<div id='pagination>
+  let paginationHtml = `<div id='pagination'>
   <button class="pagination_item" ${
     currentPage === 1 && 'disabled'
   } onclick='paginate(1, "${url}")'><i class="fas fa-fast-backward pagination_icon"></i></button>

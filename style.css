@@ -78,6 +78,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   padding-bottom: 40px;
+  padding: 10px;
 }
 
 #pagination {
