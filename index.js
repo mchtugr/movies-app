@@ -62,12 +62,12 @@ const renderMovieCards = (data) => {
 const paginate = (pageNum, url) => {
   // when pagination change, fetch new datas
   fetchMovies(url, pageNum)
-    .then((data) => createPagination(data, url))
+    .then((data) => renderPagination(data, url))
     .then(renderMovieCards)
 }
 
 // creates pagination buttons
-const createPagination = async (data, url) => {
+const renderPagination = async (data, url) => {
   const pagination = document.querySelector('#pagination')
   const currentPage = data.page
   const lastPage = data.total_pages
@@ -112,7 +112,7 @@ const createPagination = async (data, url) => {
 document.addEventListener(
   'DOMContentLoaded',
   fetchMovies(DISCOVER_URL)
-    .then((data) => createPagination(data, DISCOVER_URL))
+    .then((data) => renderPagination(data, DISCOVER_URL))
     .then(renderMovieCards)
 )
 
@@ -127,7 +127,7 @@ const handleSearch = () => {
   if (keyword.length > 2) {
     timer = setTimeout(function () {
       fetchMovies(SEARCH_URL, 1, keyword).then((data) =>
-        createPagination(data, SEARCH_URL).then(renderMovieCards)
+        renderPagination(data, SEARCH_URL).then(renderMovieCards)
       )
     }, 400)
   }
@@ -135,7 +135,7 @@ const handleSearch = () => {
   if (keyword.length === 0) {
     timer = setTimeout(function () {
       fetchMovies(DISCOVER_URL).then((data) =>
-        createPagination(data, DISCOVER_URL).then(renderMovieCards)
+        renderPagination(data, DISCOVER_URL).then(renderMovieCards)
       )
     }, 400)
   }
@@ -147,6 +147,10 @@ const handleSearch = () => {
 handleSort = () => {
   let sortType = document.getElementById('sort').value
   fetchMovies(DISCOVER_URL, 1, null, sortType).then((data) =>
-    createPagination(data, DISCOVER_URL).then(renderMovieCards)
+    renderPagination(data, DISCOVER_URL).then(renderMovieCards)
   )
 }
+
+const currentYear = new Date().getFullYear()
+
+document.getElementById('copyright').innerHTML = '&copy; ' + currentYear

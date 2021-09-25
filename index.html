@@ -31,6 +31,7 @@
         />
       </div>
     </nav>
+    <!-- Handle responsive position -->
     <div class="sorting_container">
       <select id="sort" onchange="handleSort()">
         <option value="popularity.desc">Popularity</option>
@@ -41,7 +42,21 @@
       </select>
     </div>
     <div class="container"></div>
+    <!-- Add current page out of last page text -->
     <div id="pagination"></div>
+    <footer>
+      <div>
+        This website is coded for Kodluyouruz JavaScript & React Bootcamp
+      </div>
+      <div>All rights reserved</div>
+      <time id="copyright"></time>
+      <div>
+        Designed by
+        <a href="https://github.com/murtazaaylak" target="_blank"
+          >Mucahit Ugur</a
+        >
+      </div>
+    </footer>
     <script src="index.js"></script>
   </body>
 </html>

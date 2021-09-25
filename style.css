@@ -76,6 +76,8 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #eee;
+  padding-bottom: 40px;
 }
 
 .pagination_item {
@@ -95,6 +97,7 @@ nav {
 
 .active {
   color: teal;
+  background-color: #ddd;
 }
 
 .pagination_icon {
@@ -256,4 +259,23 @@ nav {
   body {
     background-color: white;
   }
+}
+
+footer {
+  padding: 30px;
+  line-height: 1.5;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    rgba(61, 59, 59, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  letter-spacing: 1.2;
+  color: #eee;
+}
+
+footer a {
+  color: #f3ce13;
+  font-size: 16px;
+  text-decoration: none;
 }
