@@ -68,7 +68,7 @@ const paginate = (pageNum, url) => {
 
 // creates pagination buttons
 const renderPagination = async (data, url) => {
-  const pagination = document.querySelector('#pagination')
+  const pagination = document.querySelector('#pagination_container')
   const currentPage = data.page
   const lastPage = data.total_pages
   // create available pages array
@@ -78,7 +78,8 @@ const renderPagination = async (data, url) => {
   let firstThree = pages.slice(currentPageIndex, currentPageIndex + 3)
 
   // first page & next page btns
-  paginationHtml = `<button class="pagination_item" ${
+  let paginationHtml = `<div id='pagination>
+  <button class="pagination_item" ${
     currentPage === 1 && 'disabled'
   } onclick='paginate(1, "${url}")'><i class="fas fa-fast-backward pagination_icon"></i></button>
   <button class="pagination_item" ${
@@ -102,7 +103,11 @@ const renderPagination = async (data, url) => {
   }, "${url}")'><i class="fas fa-step-forward pagination_icon"></i></button>
   <button class="pagination_item" ${
     currentPage === lastPage && 'disabled'
-  } onclick='paginate(${lastPage}, "${url}")'><i class="fas fa-fast-forward pagination_icon"></i></button>`
+  } onclick='paginate(${lastPage}, "${url}")'><i class="fas fa-fast-forward pagination_icon"></i></button>
+  </div>
+  <div class='pagination_info'>
+    Showing page ${currentPage} out of ${lastPage}
+  </div>`
 
   pagination.innerHTML = paginationHtml
   return data
@@ -153,4 +158,4 @@ handleSort = () => {
 
 const currentYear = new Date().getFullYear()
 
-document.getElementById('copyright').innerHTML = '&copy; ' + currentYear
+document.getElementById('copyright').innerHTML = '&copy;' + currentYear
