@@ -266,6 +266,11 @@ footer a {
   .sorting_container {
     text-align: center;
   }
+
+  .pagination_item {
+    margin: 7px;
+    padding: 12px;
+  }
 }
 
 /* Low resolution  Tablets, Ipads */
