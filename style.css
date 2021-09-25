@@ -6,10 +6,6 @@ body {
   background-color: #eee;
 }
 
-.outer-wrap {
-  background-color: #eee;
-}
-
 /* NAVBAR */
 
 nav {
@@ -42,6 +38,8 @@ nav {
 .search_box_container {
   padding: 10px;
   position: relative;
+  align-items: center;
+  display: flex;
   align-items: center;
 }
 
@@ -292,14 +290,13 @@ footer a {
   .movie_card {
     width: calc((100vw - 200px) / 2);
   }
-   .sorting_container {
+  .sorting_container {
     text-align: end;
   }
 
   #sort {
     position: relative;
   }
-}
 }
 
 /* Laptops and Desktops */
