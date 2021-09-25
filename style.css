@@ -78,6 +78,7 @@ nav {
   justify-content: center;
   align-items: center;
   padding-bottom: 40px;
+  background-color: #eee;
 }
 
 #pagination {
@@ -124,6 +125,8 @@ nav {
   display: block;
   position: relative;
   height: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 #sort {
@@ -228,50 +231,6 @@ nav {
   color: crimson;
 }
 
-/* MEDIA QUERIES */
-
-/* Mobile Devices */
-@media (max-width: 480px) {
-  .movie_card {
-    width: 100%;
-  }
-}
-
-/* Low resolution  Tablets, Ipads */
-@media (min-width: 481px) and (max-width: 768px) {
-  .container {
-    padding: 60px;
-  }
-  .movie_card {
-    width: calc((100vw - 200px) / 2);
-  }
-}
-
-/* Small screens, laptops */
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .container {
-    padding: 60px;
-  }
-  .movie_card {
-    width: calc((100vw - 200px) / 2);
-  }
-}
-
-/* Laptops and Desktops */
-@media (min-width: 1025px) and (max-width: 1280px) {
-  body {
-    background-color: white;
-  }
-}
-
-/* Large screens */
-@media (min-width: 1281px) {
-  body {
-    background-color: white;
-  }
-}
-
 footer {
   font-size: 12px;
   padding: 20px;
@@ -289,4 +248,70 @@ footer {
 footer a {
   color: #f3ce13;
   text-decoration: none;
+}
+
+/* MEDIA QUERIES */
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+  .movie_card {
+    width: 100%;
+  }
+
+  .sorting_container {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+  }
+}
+
+/* Low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding: 60px;
+  }
+  .movie_card {
+    width: calc((100vw - 200px) / 2);
+  }
+
+  .sorting_container {
+    text-align: center;
+  }
+
+  #sort {
+    position: relative;
+  }
+}
+
+/* Small screens, laptops */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 60px;
+  }
+  .movie_card {
+    width: calc((100vw - 200px) / 2);
+  }
+   .sorting_container {
+    text-align: end;
+  }
+
+  #sort {
+    position: relative;
+  }
+}
+}
+
+/* Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  body {
+    background-color: white;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1281px) {
+  body {
+    background-color: white;
+  }
 }
